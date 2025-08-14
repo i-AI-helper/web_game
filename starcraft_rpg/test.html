@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트 페이지</title>
+</head>
+<body>
+    <h1>JavaScript 파일 테스트</h1>
+    <div id="test-output"></div>
+    
+    <script>
+        console.log('테스트 시작');
+        
+        // 각 파일을 순서대로 로드하여 테스트
+        const testOutput = document.getElementById('test-output');
+        
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    console.log(`${src} 로드 성공`);
+                    testOutput.innerHTML += `<p>✅ ${src} 로드 성공</p>`;
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.error(`${src} 로드 실패`);
+                    testOutput.innerHTML += `<p>❌ ${src} 로드 실패</p>`;
+                    reject();
+                };
+                document.head.appendChild(script);
+            });
+        }
+        
+        async function testFiles() {
+            try {
+                await loadScript('game-core.js');
+                console.log('StarcraftRPG 클래스:', typeof StarcraftRPG);
+                
+                await loadScript('game-actions.js');
+                await loadScript('game-save.js');
+                await loadScript('game-render.js');
+                await loadScript('game-utils.js');
+                
+                // 모든 파일이 로드된 후 테스트
+                if (typeof StarcraftRPG !== 'undefined') {
+                    testOutput.innerHTML += '<p>🎉 모든 파일 로드 완료!</p>';
+                    testOutput.innerHTML += '<p>StarcraftRPG 클래스가 정의되었습니다.</p>';
+                } else {
+                    testOutput.innerHTML += '<p>❌ StarcraftRPG 클래스가 정의되지 않았습니다.</p>';
+                }
+                
+            } catch (error) {
+                console.error('테스트 실패:', error);
+                testOutput.innerHTML += `<p>❌ 테스트 실패: ${error.message}</p>`;
+            }
+        }
+        
+        testFiles();
+    </script>
+</body>
+</html>

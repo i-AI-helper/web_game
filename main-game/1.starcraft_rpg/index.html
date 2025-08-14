@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타크래프트 인생살아가기 RPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="ui-overlay">
+            <div class="status-bar">
+                <div class="resource-display">
+                    <div class="mineral">미네랄: <span id="mineral-count">50</span></div>
+                    <div class="gas">가스: <span id="gas-count">0</span></div>
+                    <div class="supply">인구수: <span id="supply-count">1</span>/<span id="supply-max">8</span></div>
+                </div>
+                <div class="character-stats">
+                    <div class="health">체력: <span id="health-current">100</span>/<span id="health-max">100</span></div>
+                    <div class="energy">에너지: <span id="energy-current">100</span>/<span id="energy-max">100</span></div>
+                    <div class="level">레벨: <span id="level">1</span></div>
+                </div>
+            </div>
+            
+            <div class="action-panel">
+                <button id="work-btn" class="action-btn">일하기</button>
+                <button id="train-btn" class="action-btn">훈련하기</button>
+                <button id="explore-btn" class="action-btn">탐험하기</button>
+                <button id="build-btn" class="action-btn">건설하기</button>
+                <button id="rest-btn" class="action-btn">휴식하기</button>
+            </div>
+            
+            <div class="event-log" id="event-log">
+                <div class="log-title">이벤트 로그</div>
+                <div class="log-content" id="log-content">
+                    <div class="log-entry">새로운 인생이 시작되었습니다...</div>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="game-menu" id="game-menu">
+            <div class="menu-content">
+                <h2>스타크래프트 인생살아가기</h2>
+                <p>테란의 일개 시민으로 시작하여 우주에서 살아남으세요!</p>
+                <button id="start-game-btn">게임 시작</button>
+                <button id="load-game-btn">게임 불러오기</button>
+                <button id="settings-btn">설정</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

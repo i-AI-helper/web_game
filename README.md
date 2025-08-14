@@ -1,94 +1,163 @@
-# 🎮 게임 웹 프로젝트
+# 🚀 스타크래프트 인생살아가기 RPG
 
-## 📋 프로젝트 개요
-이 저장소는 다양한 웹 게임들을 개발하고 관리하는 프로젝트입니다. 현재는 테트릭스 게임이 포함되어 있으며, 향후 더 많은 게임들이 추가될 예정입니다.
+> 테란의 일개 시민에서 우주 제국의 지배자까지!  
+> 스타크래프트 테마의 인생 시뮬레이션 RPG 게임
 
-## 🆕 최신 업데이트 (v0.1)
+![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Platform](https://img.shields.io/badge/platform-Web-brightgreen.svg)
 
-### ✨ 새로 추가된 기능
-- **테트릭스 게임**: 완전한 HTML5 Canvas 기반 테트릭스 게임
-- **현대적인 UI/UX**: 그라디언트 디자인과 반응형 레이아웃
-- **게임 시스템**: 점수, 레벨, 줄 제거 시스템
-- **게임 컨트롤**: 직관적인 키보드 조작 및 버튼 컨트롤
+## 📖 게임 소개
 
-### 🔧 개선된 사항
-- 프로젝트 구조 체계화
-- AI 작업 기록 시스템 구축
-- 문서화 및 README 파일 정리
+스타크래프트 인생살아가기 RPG는 웹 브라우저에서 즐길 수 있는 인생 시뮬레이션 게임입니다. 플레이어는 테란의 평범한 시민으로 시작하여, 다양한 직업을 선택하고 자원을 수집하며 건물을 건설해 나가면서 점진적으로 성장하는 경험을 할 수 있습니다.
 
-### 📁 새로 추가된 파일
-```
-tetris_game/
-├── index.html      # 게임 메인 파일
-├── style.css       # 스타일시트
-├── tetris.js       # 게임 로직
-└── README.md       # 게임 설명서
-```
+## ✨ 주요 기능
 
-## 🎯 프로젝트 목표
-- 웹 기반 게임 개발 및 배포
-- AI 어시스턴트와의 협업을 통한 개발
-- 지속적인 기능 개선 및 새로운 게임 추가
+### 🎯 직업 시스템
+- **광부**: 채광 특화, 미네랄 수집 보너스
+- **기술자**: 건설 특화, 건물 건설 효율성 향상
+- **군인**: 전투 특화, 체력 및 전투 스킬 강화
+- **상인**: 거래 특화, 인구수 제한 증가
+
+### 🏗️ 건설 시스템
+- **커맨드 센터**: 기본 건물, 게임 시작점
+- **배럭스**: 군사 건물, 전투 유닛 생산
+- **팩토리**: 기계화 건물, 중장비 생산
+- **스타포트**: 우주 건물, 우주선 생산
+- **아카데미**: 연구 건물, 기술 개발
+
+### 💎 자원 관리
+- **미네랄**: 기본 건설 자원
+- **가스**: 고급 건설 및 연구 자원
+- **인구수**: 건물 및 유닛 제한
+- **에너지**: 액션 수행에 필요한 자원
+
+### 🎮 게임 시스템
+- **난이도 설정**: 4단계 난이도 (쉬움 ~ 악몽)
+- **저장/불러오기**: 3개 저장 슬롯 지원
+- **자동 저장**: 5일마다 자동 저장
+- **키보드 단축키**: 빠른 액션 실행
 
 ## 🚀 시작하기
 
-### 테트릭스 게임 실행
-1. `tetris_game/` 폴더로 이동
-2. `index.html` 파일을 웹 브라우저에서 열기
-3. "게임 시작" 버튼을 클릭하여 게임 시작
+### 요구사항
+- 모던 웹 브라우저 (Chrome, Firefox, Safari, Edge)
+- JavaScript 활성화
+- 인터넷 연결 (GSAP 라이브러리 로드용)
 
-### 게임 조작법
-- **← →**: 블록 좌우 이동
-- **↓**: 블록 빠른 하강
-- **↑**: 블록 회전
-- **스페이스바**: 블록 즉시 하강
-
-## 📚 프로젝트 구조
-```
-1.game web/
-├── tetris_game/           # 테트릭스 게임
-│   ├── index.html
-│   ├── style.css
-│   ├── tetris.js
-│   └── README.md
-├── md_files/              # 프로젝트 문서
-│   ├── AI_exec.md         # AI 작업 지침
-│   ├── AI_README.md       # AI 작업 기록
-│   └── project.ai.md      # 프로젝트 설명
-├── ai_cheat/              # AI 대화 기록
-├── README.md              # 메인 README (현재 파일)
-├── LICENSE                # 라이선스
-└── Release.md             # 릴리즈 노트
+### 설치 및 실행
+1. 프로젝트를 클론하거나 다운로드
+```bash
+git clone [repository-url]
+cd starcraft_rpg
 ```
 
-## 🛠️ 기술 스택
-- **프론트엔드**: HTML5, CSS3, JavaScript ES6+
-- **게임 엔진**: Canvas API
-- **디자인**: CSS Grid, Flexbox, 그라디언트
-- **아키텍처**: 클래스 기반 객체지향 설계
+2. 웹 브라우저에서 `index.html` 파일 열기
+3. 게임 시작!
 
-## 📈 개발 로드맵
-- [x] 테트릭스 게임 개발 (v0.1)
-- [ ] 게임 기능 개선 및 최적화
-- [ ] 새로운 게임 추가
-- [ ] 모바일 지원 강화
-- [ ] 멀티플레이어 기능
+### 온라인 데모
+- [GitHub Pages](https://[username].github.io/starcraft_rpg/) (예정)
+
+## 🎨 기술 스택
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **애니메이션**: GSAP (GreenSock Animation Platform)
+- **아키텍처**: 모듈화된 JavaScript 구조
+- **저장**: LocalStorage
+- **디자인**: 반응형 웹 디자인
+
+## 📁 프로젝트 구조
+
+```
+starcraft_rpg/
+├── 📄 index.html          # 메인 HTML 파일
+├── 🎨 style.css           # 스타일시트 (애니메이션 포함)
+├── ⚙️ game-core.js        # 핵심 게임 클래스
+├── 🎮 game-actions.js     # 게임 액션들
+├── 💾 game-save.js        # 저장/불러오기 시스템
+├── 🖼️ game-render.js      # 렌더링 및 파티클
+├── 🛠️ game-utils.js       # 유틸리티 함수들
+├── 🚀 game-main.js        # 게임 초기화 및 메인 로직
+├── 🐛 debug.html          # 디버깅 도구
+└── 📚 README.md           # 게임 설명서
+```
+
+## 🎮 게임 플레이
+
+### 기본 액션
+1. **일하기** (⛏️): 미네랄 수집, 에너지 20 소모
+2. **훈련하기** (🏋️): 스킬 향상, 미네랄 10 + 에너지 15 소모
+3. **탐험하기** (🗺️): 랜덤 이벤트, 에너지 25 소모
+4. **건설하기** (🏗️): 건물 건설, 미네랄 50+ 소모
+5. **휴식하기** (😴): 에너지 회복, 무료
+
+### 게임 진행
+- 게임 내 시간은 실제 시간과 연동
+- 하루가 지날 때마다 자동 저장 (설정 가능)
+- 레벨업 시 체력, 에너지, 인구수 증가
+- 스킬 향상으로 효율성 증가
+
+## 🔧 개발자 도구
+
+### 디버깅
+- `debug.html` 파일을 통해 게임 상태 모니터링
+- 브라우저 콘솔에서 `gameDebug` 함수 사용
+
+### 전역 함수
+```javascript
+// 게임 상태 확인
+gameDebug.showGameState()
+
+// 게임 리셋
+gameDebug.resetGame()
+
+// 자원 추가
+gameDebug.addResources(100, 50)
+
+// 즉시 레벨업
+gameDebug.levelUp()
+```
+
+## 📈 버전 히스토리
+
+### v0.2.0 (2025-08-14)
+- ✨ GSAP 애니메이션 라이브러리 통합
+- 🎨 고급 CSS 애니메이션 시스템 구현
+- 🔄 메뉴 전환 애니메이션 개선
+- 💫 자원 획득 시 시각적 피드백 강화
+- ⭐ 레벨업 파티클 효과 추가
+- 🌐 Safari 브라우저 호환성 개선
+
+### v0.1.0 (2025-08-14)
+- 🎮 기본 게임 시스템 구현
+- 🏗️ 건설 시스템 구현
+- 💾 저장/불러오기 시스템
+- 🎯 직업 시스템 및 보너스
+- 📱 반응형 UI/UX 디자인
 
 ## 🤝 기여하기
-이 프로젝트는 AI 어시스턴트와 함께 개발되고 있습니다. 새로운 아이디어나 개선사항이 있다면 언제든 제안해주세요!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 라이선스
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
 
-## 🔗 관련 링크
-- [GitHub 저장소](https://github.com/float-OS/ai_helper)
-- [AI 작업 기록](md_files/AI_README.md)
-- [프로젝트 상세 설명](md_files/project.ai.md)
+이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
+
+## 🙏 감사의 말
+
+- **Blizzard Entertainment**: 스타크래프트 시리즈 영감
+- **GreenSock**: GSAP 애니메이션 라이브러리
+- **Google Fonts**: Orbitron 폰트 제공
+
+## 📞 연락처
+
+- **프로젝트 링크**: [https://github.com/[username]/starcraft_rpg](https://github.com/[username]/starcraft_rpg)
+- **이슈 리포트**: [GitHub Issues](https://github.com/[username]/starcraft_rpg/issues)
 
 ---
 
-**마지막 업데이트**: 2025년 8월 14일  
-**버전**: v0.1  
-**개발자**: AI 어시스턴트 + 사용자
-
-즐거운 게임 되세요! 🎮✨
+⭐ 이 프로젝트가 도움이 되었다면 스타를 눌러주세요!

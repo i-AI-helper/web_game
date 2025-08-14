@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타크래프트 인생살아가기 RPG - 개선판</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- GSAP 애니메이션 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <!-- 메인 메뉴 -->
+        <div class="game-menu" id="game-menu">
+            <div class="menu-content">
+                <h1 class="game-title">STARCRAFT RPG</h1>
+                <p class="game-subtitle">테란의 일개 시민에서 우주 제국의 지배자까지!</p>
+                
+                <div class="menu-buttons">
+                    <button id="new-game-btn" class="menu-btn primary">새 게임</button>
+                    <button id="load-game-btn" class="menu-btn">게임 불러오기</button>
+                    <button id="settings-btn" class="menu-btn">설정</button>
+                    <button id="credits-btn" class="menu-btn">크레딧</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 새 게임 설정 메뉴 -->
+        <div class="new-game-menu hidden" id="new-game-menu">
+            <div class="menu-content">
+                <h2>새 게임 설정</h2>
+                                 <div class="difficulty-selector">
+                     <label for="difficulty-select">난이도 선택:</label>
+                     <select id="difficulty-select" title="게임 난이도를 선택하세요">
+                         <option value="easy">쉬움 - 초보자용</option>
+                         <option value="normal" selected>보통 - 기본</option>
+                         <option value="hard">어려움 - 도전</option>
+                         <option value="nightmare">악몽 - 극한</option>
+                     </select>
+                 </div>
+                 <div class="character-selector">
+                     <label for="character-select">직업 선택:</label>
+                     <select id="character-select" title="캐릭터 직업을 선택하세요">
+                         <option value="miner" selected>광부 - 채광 특화</option>
+                         <option value="engineer">기술자 - 건설 특화</option>
+                         <option value="soldier">군인 - 전투 특화</option>
+                         <option value="trader">상인 - 거래 특화</option>
+                     </select>
+                 </div>
+                <div class="menu-buttons">
+                    <button id="start-new-game-btn" class="menu-btn primary">게임 시작</button>
+                    <button id="back-to-main-btn" class="menu-btn">뒤로 가기</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 저장 슬롯 선택 메뉴 -->
+        <div class="save-slots-menu hidden" id="save-slots-menu">
+            <div class="menu-content">
+                <h2>저장 슬롯 선택</h2>
+                <div class="save-slots-container">
+                    <div class="save-slot" data-slot="1">
+                        <div class="slot-header">슬롯 1</div>
+                        <div class="slot-info" id="slot-1-info">비어있음</div>
+                        <div class="slot-buttons">
+                            <button class="load-slot-btn" data-slot="1">불러오기</button>
+                            <button class="delete-slot-btn" data-slot="1">삭제</button>
+                        </div>
+                    </div>
+                    <div class="save-slot" data-slot="2">
+                        <div class="slot-header">슬롯 2</div>
+                        <div class="slot-info" id="slot-2-info">비어있음</div>
+                        <div class="slot-buttons">
+                            <button class="load-slot-btn" data-slot="2">불러오기</button>
+                            <button class="delete-slot-btn" data-slot="2">삭제</button>
+                        </div>
+                    </div>
+                    <div class="save-slot" data-slot="3">
+                        <div class="slot-header">슬롯 3</div>
+                        <div class="slot-info" id="slot-3-info">비어있음</div>
+                        <div class="slot-buttons">
+                            <button class="load-slot-btn" data-slot="3">불러오기</button>
+                            <button class="delete-slot-btn" data-slot="3">삭제</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="back-to-main-from-save-btn" class="menu-btn">뒤로 가기</button>
+            </div>
+        </div>
+
+        <!-- 게임 화면 -->
+        <div class="game-screen hidden" id="game-screen">
+            <!-- 상단 상태 바 -->
+            <div class="status-bar">
+                <div class="time-display">
+                    <div class="game-time">
+                        <span class="time-label">게임 시간:</span>
+                        <span id="game-time-display">Day 1, 00:00</span>
+                    </div>
+                    <div class="real-time">
+                        <span class="time-label">실제 시간:</span>
+                        <span id="real-time-display"></span>
+                    </div>
+                </div>
+                
+                <div class="resource-display">
+                    <div class="resource mineral">
+                        <span class="resource-icon">⛏️</span>
+                        <span class="resource-label">미네랄:</span>
+                        <span id="mineral-count">50</span>
+                    </div>
+                    <div class="resource gas">
+                        <span class="resource-icon">💨</span>
+                        <span class="resource-label">가스:</span>
+                        <span id="gas-count">0</span>
+                    </div>
+                    <div class="resource supply">
+                        <span class="resource-icon">👥</span>
+                        <span class="resource-label">인구수:</span>
+                        <span id="supply-count">1</span>/<span id="supply-max">8</span>
+                    </div>
+                </div>
+                
+                <div class="character-stats">
+                    <div class="stat health">
+                        <span class="stat-icon">❤️</span>
+                        <span class="stat-label">체력:</span>
+                        <span id="health-current">100</span>/<span id="health-max">100</span>
+                    </div>
+                    <div class="stat energy">
+                        <span class="stat-icon">⚡</span>
+                        <span class="stat-label">에너지:</span>
+                        <span id="energy-current">100</span>/<span id="energy-max">100</span>
+                    </div>
+                    <div class="stat level">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-label">레벨:</span>
+                        <span id="level">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 게임 캔버스 -->
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+            <!-- 액션 패널 -->
+            <div class="action-panel">
+                <button id="work-btn" class="action-btn work-btn">
+                    <span class="btn-icon">⛏️</span>
+                    <span class="btn-text">일하기</span>
+                    <span class="btn-cost">에너지 20</span>
+                </button>
+                <button id="train-btn" class="action-btn train-btn">
+                    <span class="btn-icon">🏋️</span>
+                    <span class="btn-text">훈련하기</span>
+                    <span class="btn-cost">미네랄 10, 에너지 15</span>
+                </button>
+                <button id="explore-btn" class="action-btn explore-btn">
+                    <span class="btn-icon">🗺️</span>
+                    <span class="btn-text">탐험하기</span>
+                    <span class="btn-cost">에너지 25</span>
+                </button>
+                <button id="build-btn" class="action-btn build-btn">
+                    <span class="btn-icon">🏗️</span>
+                    <span class="btn-text">건설하기</span>
+                    <span class="btn-cost">미네랄 50+</span>
+                </button>
+                <button id="rest-btn" class="action-btn rest-btn">
+                    <span class="btn-icon">😴</span>
+                    <span class="btn-text">휴식하기</span>
+                    <span class="btn-cost">무료</span>
+                </button>
+            </div>
+
+            <!-- 이벤트 로그 -->
+            <div class="event-log" id="event-log">
+                <div class="log-header">
+                    <span class="log-title">이벤트 로그</span>
+                    <button id="clear-log-btn" class="clear-log-btn">지우기</button>
+                </div>
+                <div class="log-content" id="log-content">
+                    <div class="log-entry system">새로운 인생이 시작되었습니다...</div>
+                </div>
+            </div>
+
+            <!-- 게임 메뉴 버튼 -->
+            <div class="game-menu-buttons">
+                <button id="save-game-btn" class="game-menu-btn">💾 저장</button>
+                <button id="pause-game-btn" class="game-menu-btn">⏸️ 일시정지</button>
+                <button id="main-menu-btn" class="game-menu-btn">🏠 메인메뉴</button>
+            </div>
+
+            <!-- 일시정지 메뉴 -->
+            <div class="pause-menu hidden" id="pause-menu">
+                <div class="menu-content">
+                    <h2>게임 일시정지</h2>
+                    <div class="pause-options">
+                        <button id="resume-btn" class="menu-btn primary">계속하기</button>
+                        <button id="save-pause-btn" class="menu-btn">저장하기</button>
+                        <button id="settings-pause-btn" class="menu-btn">설정</button>
+                        <button id="quit-to-main-btn" class="menu-btn">메인메뉴로</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 설정 메뉴 -->
+        <div class="settings-menu hidden" id="settings-menu">
+            <div class="menu-content">
+                <h2>게임 설정</h2>
+                                 <div class="setting-item">
+                     <label for="game-speed">게임 속도:</label>
+                     <select id="game-speed" title="게임 진행 속도를 선택하세요">
+                         <option value="0.5">느리게 (0.5x)</option>
+                         <option value="1" selected>보통 (1x)</option>
+                         <option value="2">빠르게 (2x)</option>
+                         <option value="3">매우 빠르게 (3x)</option>
+                     </select>
+                 </div>
+                 <div class="setting-item">
+                     <label for="auto-save">자동 저장:</label>
+                     <input type="checkbox" id="auto-save" checked title="5일마다 자동으로 게임을 저장합니다">
+                 </div>
+                 <div class="setting-item">
+                     <label for="animations">애니메이션 효과:</label>
+                     <input type="checkbox" id="animations" checked title="게임 내 애니메이션 효과를 켜거나 끕니다">
+                 </div>
+                 <div class="setting-item">
+                     <label for="sound-effects">사운드 효과:</label>
+                     <input type="checkbox" id="sound-effects" checked title="게임 내 사운드 효과를 켜거나 끕니다">
+                 </div>
+                <button id="save-settings-btn" class="menu-btn primary">설정 저장</button>
+                <button id="back-from-settings-btn" class="menu-btn">뒤로 가기</button>
+            </div>
+        </div>
+
+        <!-- 크레딧 -->
+        <div class="credits-menu hidden" id="credits-menu">
+            <div class="menu-content">
+                <h2>게임 크레딧</h2>
+                <div class="credits-content">
+                    <p><strong>개발:</strong> AI Assistant</p>
+                    <p><strong>테마:</strong> 스타크래프트 시리즈</p>
+                    <p><strong>기술:</strong> HTML5, CSS3, JavaScript</p>
+                    <p><strong>특별 감사:</strong> Blizzard Entertainment</p>
+                </div>
+                <button id="back-from-credits-btn" class="menu-btn">뒤로 가기</button>
+            </div>
+        </div>
+
+        <!-- 알림 메시지 -->
+        <div class="notification" id="notification">
+            <span class="notification-text"></span>
+        </div>
+
+        <!-- 로딩 화면 -->
+        <div class="loading-screen hidden" id="loading-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">게임 로딩 중...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게임 JavaScript 파일들 -->
+    <script>
+        // JavaScript 오류 처리
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript 오류:', e.error);
+            console.error('오류 발생 파일:', e.filename);
+            console.error('오류 발생 줄:', e.lineno);
+        });
+        
+        // 스크립트 로드 상태 확인
+        let scriptsLoaded = 0;
+        const totalScripts = 6;
+        
+        function onScriptLoad() {
+            scriptsLoaded++;
+            console.log(`스크립트 로드 완료: ${scriptsLoaded}/${totalScripts}`);
+            
+            if (scriptsLoaded === totalScripts) {
+                console.log('모든 스크립트 로드 완료!');
+            }
+        }
+        
+        function onScriptError(src) {
+            console.error(`스크립트 로드 실패: ${src}`);
+        }
+    </script>
+    
+    <script src="game-core.js" onload="onScriptLoad()" onerror="onScriptError('game-core.js')"></script>
+    <script src="game-actions.js" onload="onScriptLoad()" onerror="onScriptError('game-actions.js')"></script>
+    <script src="game-save.js" onload="onScriptLoad()" onerror="onScriptError('game-save.js')"></script>
+    <script src="game-render.js" onload="onScriptLoad()" onerror="onScriptError('game-render.js')"></script>
+    <script src="game-utils.js" onload="onScriptLoad()" onerror="onScriptError('game-utils.js')"></script>
+    <script src="game-main.js" onload="onScriptLoad()" onerror="onScriptError('game-main.js')"></script>
+</body>
+</html>

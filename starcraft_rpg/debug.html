@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디버그 페이지</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>스타크래프트 RPG 디버그 페이지</h1>
+    
+    <div class="debug-info">
+        <h3>파일 로드 상태:</h3>
+        <div id="file-status"></div>
+    </div>
+    
+    <div class="debug-info">
+        <h3>클래스 정의 상태:</h3>
+        <div id="class-status"></div>
+    </div>
+    
+    <div class="debug-info">
+        <h3>콘솔 로그:</h3>
+        <div id="console-log"></div>
+    </div>
+    
+    <script>
+        const fileStatus = document.getElementById('file-status');
+        const classStatus = document.getElementById('class-status');
+        const consoleLog = document.getElementById('console-log');
+        
+        // 콘솔 로그를 페이지에 표시
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            consoleLog.innerHTML += `<div>✅ ${args.join(' ')}</div>`;
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            consoleLog.innerHTML += `<div class="error">❌ ${args.join(' ')}</div>`;
+        };
+        
+        // 파일 로드 상태 추적
+        let loadedFiles = [];
+        let failedFiles = [];
+        
+        function checkFileStatus() {
+            fileStatus.innerHTML = `
+                <div>로드된 파일: ${loadedFiles.length}</div>
+                <div>실패한 파일: ${failedFiles.length}</div>
+                <div>로드된 파일 목록: ${loadedFiles.join(', ')}</div>
+                ${failedFiles.length > 0 ? `<div class="error">실패한 파일: ${failedFiles.join(', ')}</div>` : ''}
+            `;
+        }
+        
+        function checkClassStatus() {
+            const status = {
+                'StarcraftRPG': typeof StarcraftRPG !== 'undefined',
+                'gameInstance': typeof window.gameInstance !== 'undefined',
+                'gameDebug': typeof window.gameDebug !== 'undefined'
+            };
+            
+            classStatus.innerHTML = Object.entries(status).map(([name, exists]) => 
+                `<div class="${exists ? 'success' : 'error'}">${name}: ${exists ? '✅ 정의됨' : '❌ 정의되지 않음'}</div>`
+            ).join('');
+        }
+        
+        // 파일 로드 완료 후 상태 확인
+        setTimeout(() => {
+            checkFileStatus();
+            checkClassStatus();
+        }, 2000);
+        
+        // 5초마다 상태 업데이트
+        setInterval(() => {
+            checkClassStatus();
+        }, 5000);
+    </script>
+    
+    <!-- 게임 파일들 로드 -->
+    <script src="game-core.js" onload="loadedFiles.push('game-core.js')" onerror="failedFiles.push('game-core.js')"></script>
+    <script src="game-actions.js" onload="loadedFiles.push('game-actions.js')" onerror="failedFiles.push('game-actions.js')"></script>
+    <script src="game-save.js" onload="loadedFiles.push('game-save.js')" onerror="failedFiles.push('game-save.js')"></script>
+    <script src="game-render.js" onload="loadedFiles.push('game-render.js')" onerror="failedFiles.push('game-render.js')"></script>
+    <script src="game-utils.js" onload="loadedFiles.push('game-utils.js')" onerror="failedFiles.push('game-utils.js')"></script>
+    <script src="game-main.js" onload="loadedFiles.push('game-main.js')" onerror="failedFiles.push('game-main.js')"></script>
+</body>
+</html>
