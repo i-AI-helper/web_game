@@ -142,6 +142,7 @@ body {
 .action-btn:nth-child(3) { animation-delay: 0.3s; }
 .action-btn:nth-child(4) { animation-delay: 0.4s; }
 .action-btn:nth-child(5) { animation-delay: 0.5s; }
+.action-btn:nth-child(6) { animation-delay: 0.6s; }
 
 /* 키프레임 애니메이션들 */
 @keyframes typing {
@@ -793,6 +794,100 @@ body {
 /* 레벨업 애니메이션 */
 .levelup {
     animation: pulse 1s ease-in-out 3;
+}
+
+/* 전투 UI 스타일 */
+.enemy-info {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--danger-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    color: var(--light-text);
+    z-index: 100;
+}
+
+.enemy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--danger-color);
+}
+
+.enemy-header h3 {
+    margin: 0;
+    color: var(--danger-color);
+    font-size: 1.3em;
+}
+
+.enemy-level {
+    background: var(--danger-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.enemy-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.enemy-health {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.health-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--danger-color), #ff6b6b);
+    transition: width 0.3s ease;
+}
+
+.health-text {
+    text-align: center;
+    font-weight: bold;
+    color: var(--danger-color);
+}
+
+.enemy-abilities {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.abilities {
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+/* 전투 버튼 스타일 */
+.combat-btn {
+    background: linear-gradient(45deg, var(--danger-color), #ff6b6b) !important;
+    border: 2px solid var(--danger-color) !important;
+}
+
+.combat-btn:hover {
+    background: linear-gradient(45deg, #ff6b6b, var(--danger-color)) !important;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 71, 87, 0.4);
 }
 
 /* 스크롤바 스타일링 */

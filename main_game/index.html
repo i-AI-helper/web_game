@@ -171,6 +171,11 @@
                     <span class="btn-text">휴식하기</span>
                     <span class="btn-cost">무료</span>
                 </button>
+                <button id="combat-btn" class="action-btn combat-btn">
+                    <span class="btn-icon">⚔️</span>
+                    <span class="btn-text">전투하기</span>
+                    <span class="btn-cost">에너지 30</span>
+                </button>
             </div>
 
             <!-- 이벤트 로그 -->
@@ -274,7 +279,7 @@
         
         // 스크립트 로드 상태 확인
         let scriptsLoaded = 0;
-        const totalScripts = 6;
+        const totalScripts = 8;
         
         function onScriptLoad() {
             scriptsLoaded++;
@@ -292,6 +297,8 @@
     
     <script src="game-core.js" onload="onScriptLoad()" onerror="onScriptError('game-core.js')"></script>
     <script src="game-actions.js" onload="onScriptLoad()" onerror="onScriptError('game-actions.js')"></script>
+    <script src="game-enemies.js" onload="onScriptLoad()" onerror="onScriptError('game-enemies.js')"></script>
+    <script src="game-combat.js" onload="onScriptLoad()" onerror="onScriptError('game-combat.js')"></script>
     <script src="game-save.js" onload="onScriptLoad()" onerror="onScriptError('game-save.js')"></script>
     <script src="game-render.js" onload="onScriptLoad()" onerror="onScriptError('game-render.js')"></script>
     <script src="game-utils.js" onload="onScriptLoad()" onerror="onScriptError('game-utils.js')"></script>

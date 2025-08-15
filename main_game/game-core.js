@@ -31,6 +31,7 @@ class StarcraftRPG {
             energy: 100,
             maxEnergy: 100,
             profession: 'miner',
+            defending: false,
             skills: { 
                 mining: 1, 
                 engineering: 1, 
@@ -128,6 +129,10 @@ class StarcraftRPG {
         
         document.getElementById('rest-btn').addEventListener('click', () => {
             this.rest();
+        });
+        
+        document.getElementById('combat-btn').addEventListener('click', () => {
+            this.encounterEnemy();
         });
         
         // 게임 메뉴 버튼들

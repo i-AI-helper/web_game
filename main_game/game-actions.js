@@ -137,7 +137,14 @@ Object.assign(StarcraftRPG.prototype, {
         this.player.energy -= 25;
         this.player.experience += 10;
         
-        // 랜덤 이벤트 발생
+        // 적 조우 확률 (30%)
+        if (Math.random() < 0.3) {
+            this.addEventLog('탐험 중 적과 조우했습니다!', 'warning');
+            this.encounterEnemy();
+            return;
+        }
+        
+        // 기존 탐험 로직
         const randomEvent = Math.random();
         if (randomEvent < 0.3) {
             // 자원 발견

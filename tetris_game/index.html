@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테트릭스 게임 - 고급 사운드 시스템</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🎮 테트릭스 게임</h1>
+            <p class="subtitle">고급 사운드 시스템이 통합된 클래식 테트릭스</p>
+        </header>
+        
+        <div class="game-info">
+            <div class="score-board">
+                <div class="score">점수: <span id="score">0</span></div>
+                <div class="high-score">최고 점수: <span id="highScore">0</span></div>
+                <div class="lines">줄: <span id="lines">0</span></div>
+                <div class="level">레벨: <span id="level">1</span></div>
+                <div class="combo">콤보: <span id="combo">0</span></div>
+            </div>
+            
+            <div class="next-piece">
+                <h3>다음 블록</h3>
+                <canvas id="nextCanvas" width="100" height="100"></canvas>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="300" height="600"></canvas>
+            
+            <div class="game-controls">
+                <button id="startBtn" class="control-btn">게임 시작</button>
+                <button id="pauseBtn" class="control-btn" disabled>일시정지</button>
+                <button id="resetBtn" class="control-btn">다시 시작</button>
+                <button id="soundSettingsBtn" class="control-btn sound-btn">🎵 사운드</button>
+            </div>
+        </div>
+        
+        <div class="game-instructions">
+            <h3>게임 조작법</h3>
+            <div class="controls-section">
+                <h4>키보드 조작</h4>
+                <p>← → : 블록 이동</p>
+                <p>↑ : 블록 회전</p>
+                <p>↓ : 블록 하강</p>
+                <p>스페이스바 : 즉시 하강</p>
+                <p>ESC : 일시정지</p>
+            </div>
+            
+            <div class="controls-section">
+                <h4>모바일 조작</h4>
+                <p>스와이프 : 블록 이동 및 회전</p>
+                <p>더블 탭 : 즉시 하강</p>
+            </div>
+            
+            <div class="game-features">
+                <h4>게임 특징</h4>
+                <p>🎵 고급 사운드 시스템</p>
+                <p>🔥 콤보 시스템</p>
+                <p>🏆 최고 점수 저장</p>
+                <p>📱 모바일 터치 지원</p>
+                <p>⏸️ 일시정지 화면</p>
+            </div>
+        </div>
+        
+        <!-- 사운드 설정 토글 버튼 -->
+        <button class="sound-settings-toggle" title="사운드 설정">🎵</button>
+    </div>
+    
+    <!-- 사운드 시스템 스크립트 -->
+    <script src="advanced-sound-manager.js"></script>
+    <script src="sound-settings.js"></script>
+    <script src="tetris.js"></script>
+    
+    <script>
+        // 사운드 설정 토글 버튼 생성
+        document.addEventListener('DOMContentLoaded', () => {
+            const soundSettingsBtn = document.getElementById('soundSettingsBtn');
+            if (soundSettingsBtn) {
+                soundSettingsBtn.addEventListener('click', () => {
+                    if (window.tetrisSoundSettings) {
+                        window.tetrisSoundSettings.toggleSettings();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
