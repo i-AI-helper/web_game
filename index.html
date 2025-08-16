@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게임 웹 프로젝트 - GitHub Pages</title>
+    <title>1.game web - 통합 게임 개발 프로젝트</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -84,37 +84,45 @@
             font-size: 0.9em;
             margin-bottom: 20px;
         }
+        .completed-badge {
+            background: #ff6b6b;
+        }
+        .in-progress-badge {
+            background: #ffa500;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎮 게임 웹 프로젝트</h1>
-        <p class="subtitle">AI와 함께 만든 다양한 웹 게임들을 즐겨보세요!</p>
+        <h1>🎮 1.game web</h1>
+        <p class="subtitle">AI와 함께 만든 통합 게임 개발 프로젝트!</p>
         
         <div class="game-links">
             <div class="game-card">
-                <div class="version-badge">v0.2.0</div>
+                <div class="version-badge completed-badge">v1.0.0 완성 🎉</div>
+                <div class="game-title">🧩 테트릭스 게임</div>
+                <div class="game-description">
+                    고급 사운드 시스템이 통합된 완벽한 테트릭스 게임입니다.
+                    Web Audio API, 모바일 터치 지원, 현대적 UI/UX를 제공합니다.
+                </div>
+                <a href="./tetris_game/" class="play-button">🎮 게임 시작</a>
+            </div>
+            
+            <div class="game-card">
+                <div class="version-badge in-progress-badge">v0.2.0 개발중</div>
                 <div class="game-title">🚀 스타크래프트 인생살아가기 RPG</div>
                 <div class="game-description">
                     테란의 일개 시민에서 우주 제국의 지배자까지! 
                     GSAP 애니메이션이 적용된 고품질 RPG 게임입니다.
                 </div>
-                <a href="./starcraft_rpg/" class="play-button">🎮 게임 시작</a>
-            </div>
-            
-            <div class="game-card">
-                <div class="version-badge">v0.1.0</div>
-                <div class="game-title">🧩 테트릭스 게임</div>
-                <div class="game-description">
-                    클래식 테트릭스 게임을 현대적인 UI/UX로 재해석한 웹 게임입니다.
-                </div>
-                <a href="./main-game/2.tetris_game/" class="play-button">🎮 게임 시작</a>
+                <a href="./main_game/" class="play-button">🎮 게임 시작</a>
             </div>
         </div>
         
         <div style="margin-top: 40px; opacity: 0.8;">
             <p>📚 <a href="https://github.com/i-AI-helper/web_game" style="color: #ffd700;">GitHub 저장소</a>에서 소스 코드를 확인하세요!</p>
-            <p>🔄 최신 업데이트: 2025년 8월 14일</p>
+            <p>🔄 최신 업데이트: 2025년 8월 16일 08:55</p>
+            <p>🏷️ 현재 버전: v1.0.0</p>
         </div>
     </div>
 </body>
